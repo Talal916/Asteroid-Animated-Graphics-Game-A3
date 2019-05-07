@@ -359,6 +359,7 @@ public class GameWorld extends Observable implements IGameWorld {
 		if(findML() != null && findPS().getMissileCount() != 0 && findPS() != null)
 		{
 			gameObjs.add(findPS().fireMissile()); //finds missile launcher, fires PS missile
+			firedSound.play();
 		}			
 		else
 			System.out.println("Sorry! Player Ship is all out of missiles!");
@@ -372,6 +373,8 @@ public class GameWorld extends Observable implements IGameWorld {
 		if(findES() != null && findES().getMissileCount() != 0)
 		{
 			gameObjs.add(findES().fire()); //finds ES, fires missile
+			firedSound.play();
+
 		}			
 		else
 			System.out.println("Enemy Ship is all out of missiles!");

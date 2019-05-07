@@ -118,8 +118,6 @@ public class Game extends Form implements Runnable {
 			
 	}
 
-
-
 	private void setUPMenu() {
 			Toolbar menu = new Toolbar();
 			this.setToolbar(menu);
@@ -244,8 +242,6 @@ public class Game extends Form implements Runnable {
 		 reloadButton = new buttonObj(reloadCommand);
 		addKeyListener('r', reloadCommand);
 		mainContainer.add(reloadButton);
-		
-
 		
 		 pauseCmd = new PauseCommand(this);
 		 gamePauseButton = new buttonObj(pauseCmd);

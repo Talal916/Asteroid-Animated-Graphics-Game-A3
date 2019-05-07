@@ -19,8 +19,8 @@ public class GameObject {
 	}
 	public void setRandLoc(double xMax, double yMax)
 	{
-		double x = Math.round(((xMax + 1.0) * rand.nextDouble() * 10.0)) / 10.0;
-		double y = Math.round(((yMax + 1.0) * rand.nextDouble() * 10.0)) / 10.0;
+		double x = xMax - (Math.round(((xMax + 1.0) * rand.nextDouble() * 10.0)) / 10.0);
+		double y = yMax - (Math.round(((yMax + 1.0) * rand.nextDouble() * 10.0)) / 10.0);
 		
 		if (x > xMax) { x = xMax; }
 		if (y > yMax) { y = yMax; }
