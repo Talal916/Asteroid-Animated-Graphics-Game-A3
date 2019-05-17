@@ -138,12 +138,22 @@ public class EnemyShip extends MoveableGameObject implements ICollider, IDrawabl
 	@Override
 	public void handleCollision(ICollider other)
 	{
-		if (other instanceof Asteroid || other instanceof PlayerShip || (other instanceof Missile && !((Missile)other).getisFriendly()));
+		if (other instanceof Asteroid || other instanceof PlayerShip);
 		{
 			this.setCollisionFlag();
 			other.setCollisionFlag();
 		}
+		if (other instanceof Missile && ((Missile)other).getisFriendly() == false)
+		{
+			collisionFlag = false;
+		
+		}
+		if(  other instanceof Missile && ((Missile)other).getisFriendly() == true)
+	{
+		other.setCollisionFlag();
+		this.setCollisionFlag();
 	}	
+}
 
 	@Override
 	public void setCollisionFlag() {

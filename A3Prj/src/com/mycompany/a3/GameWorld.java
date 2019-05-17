@@ -292,12 +292,16 @@ public class GameWorld extends Observable implements IGameWorld {
 			break;
 		case 'y':
 			EnemyShip y = new EnemyShip();
+			y.setRandLoc(GWWidth, GWHeight);
 			gameObjs.add(y);
+			fireEMissile();
 			System.out.println("An Enemy Ship has been created and added to game world!");
+			
 			localNotifyObserver();
 			break;
 		case 'b':
 			SpaceStation b = new SpaceStation();
+			b.setRandLoc(GWWidth, GWHeight);
 			gameObjs.add(b);
 			System.out.println("A Space Station has been created and added to game world!");
 			localNotifyObserver();
@@ -370,7 +374,7 @@ public class GameWorld extends Observable implements IGameWorld {
 	}
 
 	public void fireEMissile() {
-		if(findES() != null && findES().getMissileCount() != 0)
+		if(findES() != null && findES().getMissileCount() != 0 && findPS() != null)
 		{
 			gameObjs.add(findES().fire()); //finds ES, fires missile
 			firedSound.play();
@@ -591,6 +595,8 @@ public class GameWorld extends Observable implements IGameWorld {
 	      * - have spaceship blink
 	      * -tick the clock
 	      */
+			elapsedTime++;
+
 		
 			IIterator iterator = gameObjs.getIterator();
 			
@@ -612,15 +618,14 @@ public class GameWorld extends Observable implements IGameWorld {
 							missileObj.burnFuel();
 							localNotifyObserver();
 
-						if(missileObj.getFuel() == 0)
+						if(missileObj.getFuel() == 0 && missileObj.getisFriendly())
 						{
-							if(!missileObj.getisFriendly())
-								fireEMissile();
-							iterator.remove(missileObj); //if object is missile and fuel level is 0, remove it.
-							
-							localNotifyObserver();
+							iterator.remove(missileObj); // //if object is missile and fuel level is 0, remove it.
 
 						}
+						if(!missileObj.getisFriendly() && missileObj.getFuel() == 0)
+							fireEMissile();							
+						localNotifyObserver();
 						
 					}
 					else if(moveObj instanceof PlayerShip)
@@ -635,7 +640,7 @@ public class GameWorld extends Observable implements IGameWorld {
 						((EnemyShip)moveObj).launcherMove();
 						localNotifyObserver();
 
-					}
+					} 
 				}
 				else if(obj instanceof SpaceStation)
 				{
@@ -649,7 +654,6 @@ public class GameWorld extends Observable implements IGameWorld {
 				
 			}
 			CheckCollisions();
-			this.elapsedTime += elapsedTime;
 			localNotifyObserver();
 
 		}
