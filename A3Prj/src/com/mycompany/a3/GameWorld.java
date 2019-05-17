@@ -353,6 +353,7 @@ public class GameWorld extends Observable implements IGameWorld {
 		if(findML() != null)
 		{
 			findML().turn(dir); //finds missile launcher, turns it
+			launcherRotationSound.play();
 			System.out.println("Turning Missile Launcher!");
 		}			
 		localNotifyObserver();

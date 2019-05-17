@@ -10,7 +10,7 @@ public class Missile extends MoveableGameObject implements ICollider, IDrawable,
 	private int fuelLeft;
 	private boolean isFriendly;
 	private boolean selected = false;
-	private final int MISSILE_FUEL = 10000;
+	private final int MISSILE_FUEL = 100;
 	private final int MISSILE_SIZE = 20;
 	private boolean collisionFlag = false;
 	private int scoreEarn = 0;

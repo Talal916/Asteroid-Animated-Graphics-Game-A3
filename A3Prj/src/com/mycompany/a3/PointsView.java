@@ -22,11 +22,7 @@ public class PointsView extends Container implements Observer{
 	
 		this.setLayout(new FlowLayout(LEFT));
 		
-		setUpPoints();
-		setUpMissileCount();
-		setUpTime();
-		setUpSound();
-		setUpLives();		
+		gameSetUp();		
 	
 	}
 	
