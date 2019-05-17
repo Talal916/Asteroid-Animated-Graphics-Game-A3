@@ -71,7 +71,7 @@ public class Game extends Form implements Runnable {
 	private FirePMissileCommand fireCommand;
 	private WarpCommand jumpCommand;
 	private ReloadCommand reloadCommand;
-
+	private SoundCmd sCmd;
 	private RefuelCommand refuelCommand;
 	private static String versionTitle = "Asteroids Game"; //change for Play store uploads
 	
@@ -108,8 +108,6 @@ public class Game extends Form implements Runnable {
 		
 		timer.schedule((int)TIMETOTICK,true, this);
 		bg = new BGSound("bg.wav");
-		bg.play();
-	
 	}
 	
 	private void setUp() {
@@ -152,6 +150,11 @@ public class Game extends Form implements Runnable {
 	@Override
 	public void run()
 	{
+		if(gw.getSoundSetting() == true)
+			gw.playMusic();
+		else
+			gw.pauseMusic();
+
 		gw.clkTick(TIMETOTICK);
 		timeElapsed += TIMETOTICK;
 		
@@ -170,6 +173,8 @@ public class Game extends Form implements Runnable {
 			timer.cancel();
 			gw.gameOver();
 		}
+
+		
 	}//run()
 	
 	
@@ -359,6 +364,8 @@ public class Game extends Form implements Runnable {
 		}
 
 	}
+
+	
 
 }
 

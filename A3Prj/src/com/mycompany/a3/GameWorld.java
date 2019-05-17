@@ -20,7 +20,7 @@ public class GameWorld extends Observable implements IGameWorld {
 	private Sound firedSound;
 	private Sound launcherRotationSound;
 	private Sound endSound;
-	
+	private BGSound bg;
 	private double GWWidth;
 	private double GWHeight;
 
@@ -41,15 +41,13 @@ public class GameWorld extends Observable implements IGameWorld {
 		firedSound = new Sound("firedSound.wav");
 		launcherRotationSound = new Sound("launcherRotationSound.wav");
 		endSound = new Sound("endSound.wav");
-		
+		bg = new BGSound("bg.wav");
 		setEndGame(false);
 		//code here to create the initial game objects/setup
 		gameObjs = new GameCollection();
-		
 		localNotifyObserver();
 		
 	}
-	
 	
 
 	public int getMissileCount() {
@@ -737,6 +735,13 @@ public class GameWorld extends Observable implements IGameWorld {
 			}
 		}
 		
+	}
+	public void playMusic() {
+		bg.play();
+	}
+	public void pauseMusic()
+	{
+		bg.pause();
 	}
 
 }
